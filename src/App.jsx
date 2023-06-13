@@ -24,7 +24,8 @@ function App() {
   const [wrongLetters, setWrongLetters] = useState([]);
   const [guesses, setGuesses] = useState(3);
   const [score, setScore] = useState(0);
-
+  
+  
   const pickWordAndCategory = useCallback(() =>{
     const categories = Object.keys(words);
     const category = categories[Math.floor(Math.random() * categories.length)];
@@ -44,9 +45,6 @@ function App() {
     setLetters(wordLetters)
     setGameStage(stages[1].name);
 
-    // console.log(word);
-    // console.log(category);
-    // console.log(wordLetters);
   }, [pickWordAndCategory]);
 
   const verifyLetter = (letter) => {
@@ -83,8 +81,10 @@ function App() {
   useEffect(() => {
 
     const uniqueLetters = [...new Set(letters)];
-    if(guessedLetters.length === uniqueLetters.length){
-      setScore((actualScore) => actualScore + 100);
+    
+    if(guessedLetters.length === uniqueLetters.length && (guessedLetters != 0 )){
+      console.log('Ganhou');
+      setScore(actualScore => actualScore + 100);
       startGame();
     }
 
